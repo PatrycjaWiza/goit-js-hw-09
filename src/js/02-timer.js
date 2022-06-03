@@ -31,7 +31,7 @@ flatpickr(dateTimePicker, {
 
       // function to calculate get remaining time & set interval
       function convertMs(ms) {
-        setInterval(() => {
+        let counterDown = setInterval(() => {
           ms = selectedMs - new Date().getTime();
           const second = 1000;
           const minute = second * 60;
@@ -54,6 +54,10 @@ flatpickr(dateTimePicker, {
           timerHours.innerHTML = addLeadingZero(hours);
           timerMinutes.innerHTML = addLeadingZero(minutes);
           timerSeconds.textContent = addLeadingZero(seconds);
+
+          if (ms <= 0) {
+            clearInterval(counterDown);
+          }
         }, 1000);
       }
       // run timer on startBtn
