@@ -57,6 +57,10 @@ flatpickr(dateTimePicker, {
 
           if (ms <= 0) {
             clearInterval(counterDown);
+            timerDays.textContent = '00';
+            timerHours.innerHTML = '00';
+            timerMinutes.innerHTML = '00';
+            timerSeconds.textContent = '00';
           }
         }, 1000);
       }
