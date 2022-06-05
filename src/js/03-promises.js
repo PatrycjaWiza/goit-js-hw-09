@@ -12,19 +12,18 @@ function handleEvent(e) {
 
   // loop for promise generator
   for (i = 0; i < amount.value; i++) {
-    createPromise(position, delay)
-      .then(({ position, delay }) => {
-        setTimeout(() => {
+    setTimeout(() => {
+      createPromise(position, delay)
+        .then(({ position, delay }) => {
           console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        }, step.value);
-      })
-      .catch(({ position, delay }) => {
-        setTimeout(() => {
+        })
+        .catch(({ position, delay }) => {
           console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-        }, step.value);
-      });
+        });
+    }, i * step.value);
   }
 }
+
 // function create Promise
 function createPromise(position, delay) {
   position = i;
@@ -34,18 +33,11 @@ function createPromise(position, delay) {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
         // Fulfill
-        setInterval(() => {
-          resolve({ position, delay });
-        }, step.value);
+        resolve({ position, delay });
       } else {
         // Reject
-        setInterval(() => {
-          reject({ position, delay });
-        }, step.value);
+        reject({ position, delay });
       }
     }, delay.value);
   });
 }
-
-//
-//
