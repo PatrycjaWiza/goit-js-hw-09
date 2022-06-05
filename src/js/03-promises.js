@@ -14,27 +14,32 @@ function handleEvent(e) {
   for (i = 0; i < amount.value; i++) {
     createPromise(position, delay)
       .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        setTimeout(() => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        }, step.value);
       })
       .catch(({ position, delay }) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        setTimeout(() => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        }, step.value);
       });
   }
 }
 // function create Promise
 function createPromise(position, delay) {
   position = i;
+  delay = delay.value;
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
         // Fulfill
-        setTimeout(() => {
+        setInterval(() => {
           resolve({ position, delay });
         }, step.value);
       } else {
         // Reject
-        setTimeout(() => {
+        setInterval(() => {
           reject({ position, delay });
         }, step.value);
       }
