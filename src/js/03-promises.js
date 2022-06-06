@@ -44,6 +44,6 @@ function createPromise(position, delay) {
         // Reject
         reject({ position, delay });
       }
-    }, delay.value);
+    }, delay);
   });
 }
