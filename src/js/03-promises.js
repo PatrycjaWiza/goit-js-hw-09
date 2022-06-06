@@ -14,7 +14,7 @@ function handleEvent(e) {
   // loop for promise generator
   for (let i = 0; i < amount.value; i++) {
     setTimeout(() => {
-      position = i;
+      position = i + 1;
 
       createPromise(position, delay)
         .then(({ position, delay }) => {
